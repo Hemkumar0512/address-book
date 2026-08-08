@@ -1,0 +1,17 @@
+#16#
+Alice Smith,0987654321,alice@example.com
+Bob Johnson,1112223333,bob@company.com
+Carol White,4445556666,carol@company.com
+David Brown,7778889999,david@example.com
+Egwin,9897654780,hemkumar@gmail.com
+Eve Davis,6665554444,eve@example.com
+Felix Nithin,9544378965,Hemkumar.be@gmail.com
+Frank Miller,3334445555,frank@example.com
+Ganesh,8767854343,Ganu0909@gmail.com
+Grace Wilson,2223334444,grace@example.com
+Hannah Clark,5556667777,hannah@example.com
+Hemkumar,9894324586,hemkumar.be@gmail.com
+Ian Lewis,8889990000,ian@example.com
+Koushik,9894343476,koushik.k7@gmail.com
+Manish,9876543216,Nulu@gmail.com
+Nulu Veera Venkata Manish,9296955041,nulu.manish@lntecc.com
