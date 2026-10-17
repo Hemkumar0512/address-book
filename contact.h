@@ -20,17 +20,17 @@ typedef struct {
 } AddressBook;
 
 // --- Core contact operations (contact.c) ---
+void initialize(AddressBook *addressBook);
 void createContact(AddressBook *addressBook);
 void searchContact(AddressBook *addressBook);
 void editContact(AddressBook *addressBook);
 void deleteContact(AddressBook *addressBook);
 void listContacts(AddressBook *addressBook);
-void initialize(AddressBook *addressBook);
 void saveAndExit(AddressBook *addressBook);
 
-// Returns 1 if the phone number is NOT already used (safe to add),
-// 0 if a contact with that phone number already exists.
-int checkPhoneNum(AddressBook *addressBook, char *phone);
+// Returns 1 if the phone number is already used,
+// 0 if a contact with that phone number does not exists.
+int isDuplicatePhone(AddressBook *addressBook, char *phone);
 
 // Prompts the user to search for a contact by name/phone/email and
 // returns the index of the matching contact in addressBook->contacts[],

@@ -4,9 +4,10 @@
 
 // Entry point: shows a menu loop letting the user create, search, edit,
 // delete, and list contacts, then saves everything to contact.txt on exit.
-int main() {
-    int choice;
-    AddressBook addressBook;
+int main() 
+{
+    int choice = 0;
+    AddressBook addressBook = {0};
     initialize(&addressBook); // Load existing contacts from contact.txt
 
     do {
@@ -19,6 +20,7 @@ int main() {
         printf("6. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
+        getchar();
         switch (choice) {
             case 1:
                 createContact(&addressBook);
@@ -37,10 +39,11 @@ int main() {
                 break;
             case 6:
                 printf("Saving and Exiting...\n");
-                saveContactsToFile(&addressBook);
+                saveAndExit(&addressBook);
                 break;
             default:
                 printf("Invalid choice. Please try again.\n");
+                break;
         }
     } while (choice != 6);
 

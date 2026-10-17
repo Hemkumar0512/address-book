@@ -23,8 +23,7 @@ void saveContactsToFile(AddressBook *addressBook)
     fprintf(fptr, "#%d#\n", size);
     for (int i = 0; i < size; i++)
     {
-        fprintf(fptr, "%s,%s,%s\n", addressBook->contacts[i].name,
-                addressBook->contacts[i].phone, addressBook->contacts[i].email);
+        fprintf(fptr, "%s,%s,%s\n", addressBook->contacts[i].name, addressBook->contacts[i].phone, addressBook->contacts[i].email);
     }
     fclose(fptr);
 }
@@ -39,7 +38,6 @@ void loadContactsFromFile(AddressBook *addressBook)
     // this buffer's size, so a long line can never overflow it.
     char str[200];
     FILE *fptr = fopen("contact.txt", "r");
-
     if (fptr == NULL)
     {
         printf("File is not present\n");
@@ -50,15 +48,35 @@ void loadContactsFromFile(AddressBook *addressBook)
     // on '#' to get the contact count as a string, and convert to int.
     fscanf(fptr, "%199[^\n]", str);
     int size = atoi(strtok(&str[1], "#"));
+    if (size < 0 || size > MAX_CONTACTS) 
+    {
+        printf("Error: Invalid contact count in file!\n");
+        fclose(fptr);
+        return;
+    }
+
     addressBook->contactCount = size;
 
     // Each subsequent line is "name,phone,email" - split on commas.
     for (int i = 0; i < size; i++)
     {
         fscanf(fptr, " %199[^\n]", str);
-        strcpy(addressBook->contacts[i].name, strtok(str, ","));
-        strcpy(addressBook->contacts[i].phone, strtok(NULL, ","));
-        strcpy(addressBook->contacts[i].email, strtok(NULL, ","));
+        
+        char *name = strtok(str, ",");
+        char *phone = strtok(NULL, ",");
+        char *email = strtok(NULL, ",");
+        
+        if (name == NULL || phone == NULL || email == NULL) 
+        {
+            printf("Error: Malformed line %d in file!\n", i+1);
+            addressBook->contactCount = i;  // Keep what we loaded so far
+            fclose(fptr);
+            return;
+        }
+        
+        strcpy(addressBook->contacts[i].name, name);
+        strcpy(addressBook->contacts[i].phone, phone);
+        strcpy(addressBook->contacts[i].email, email);
     }
 
     fclose(fptr);
